@@ -3,15 +3,16 @@ import { Alert } from 'react-native';
 import Loading from './Loading';
 import * as Location from 'expo-location';
 import axios from 'axios';
+import { apiKey } from './key.js';
 
 export default function App() {
   const [isLoading, setIsLoading] = React.useState(true);
   const getWeather = async (latitude, longitude) => {
     try {
-      const response = await axios.get(
-        `api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=`,
+      const data = await axios.get(
+        `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`,
       );
-      console.log(response);
+      console.log(data);
     } catch (err) {
       console.error(err);
     }
